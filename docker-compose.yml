@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  service-a:
+    build:
+      context: ./service-a
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./service-a/.env
+    depends_on:
+      - service-b
+
+  service-b:
+    build:
+      context: ./service-b
+    ports:
+      - "3002:3001"   # Host port 3002 → Container port 3001
+    env_file:
+      - ./service-b/.env
